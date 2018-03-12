@@ -5,6 +5,7 @@ Automatically expose translations for addon in a way that can be merged in with 
 import en from 'ember-osf/locales/en/translations';
 
 export function initialize(appInstance) {
+    appInstance.rootElement = "head";
     const i18n = appInstance.lookup('service:i18n');
     i18n.addTranslations('en', en);
 }

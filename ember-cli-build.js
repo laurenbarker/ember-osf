@@ -6,9 +6,8 @@ module.exports = function(defaults) {
     var app = new EmberAddon(defaults, {
         sassOptions: {
             includePaths: [
-                'bower_components/bootstrap-daterangepicker',
-                'bower_components/c3',
-                'bower_components/osf-style/sass',
+                'node_modules/bootstrap-daterangepicker',
+                'node_modules/@centerforopenscience/osf-style/sass',
                 'node_modules/bootstrap-sass/assets/stylesheets',
                 'tests/dummy/app/components',
             ]
@@ -35,18 +34,23 @@ module.exports = function(defaults) {
         },
     });
 
-    app.import(path.join(app.bowerDirectory, 'dropzone/dist/basic.css'));
-    app.import(path.join(app.bowerDirectory, 'dropzone/dist/dropzone.css'));
-    app.import(path.join(app.bowerDirectory, 'dropzone/dist/dropzone.js'));
-    app.import(path.join(app.bowerDirectory, 'bootstrap-daterangepicker/daterangepicker.js'));
-    app.import(path.join(app.bowerDirectory, 'lodash/lodash.js'));
+     // app.import('bower_components/dropzone/dist/dropzone.js');
+    app.import({
+        development: path.join('node_modules', 'dropzone/dist/dropzone.css'),
+        production: path.join('node_modules', 'dropzone/dist/min/dropzone.min.css')
+    });
 
-    app.import(path.join(app.bowerDirectory, 'jquery.tagsinput/src/jquery.tagsinput.js'));
-    app.import(path.join(app.bowerDirectory, 'c3/c3.js'));
-    app.import(path.join(app.bowerDirectory, 'd3/d3.js'));
-    app.import(path.join(app.bowerDirectory, 'osf-style/css/base.css'));
+    // app.import(path.join('node_modules', 'jquery-tags-input/src/jquery-tags-input.js'));
+    app.import(path.join('node_modules', 'bootstrap-daterangepicker/daterangepicker.js'));
+
+
+    // app.import(path.join(app.bowerDirectory, 'c3/c3.js'));
+    // app.import(path.join(app.bowerDirectory, 'd3/d3.js'));
+
     app.import('vendor/assets/ember-osf.css');
-    app.import(path.join(app.bowerDirectory, 'ember/ember-template-compiler.js'));
-    app.import(path.join(app.bowerDirectory, 'jquery-mockjax/dist/jquery.mockjax.js'));
+    app.import({
+        test: path.join('node_modules', 'ember/ember-template-compiler.js')
+    });
+    // app.import(path.join(app.bowerDirectory, 'jquery-mockjax/dist/jquery.mockjax.js'));
     return app.toTree();
 };

@@ -1,3 +1,4 @@
+/* global pym */
 import Ember from 'ember';
 import layout from './template';
 import config from 'ember-get-config';
@@ -19,6 +20,10 @@ import config from 'ember-get-config';
  * @class file-renderer
  */
 export default Ember.Component.extend({
+    didReceiveAttrs() {
+        this._super(...arguments);
+        this.set('pymParent', new pym.Parent('mfrIframe', '', {}));
+    },
     layout,
     download: null,
     width: '100%',
@@ -31,5 +36,13 @@ export default Ember.Component.extend({
             download += '&version=' + this.get('version');
         }
         return config.OSF.renderUrl + '?url=' + encodeURIComponent(download);
-    })
+    }),
+    actions: {
+        showHypothesis() {
+            this.get('pymParent').sendMessage('showHypothesis');
+        },
+        hideHypothesis() {
+            this.get('pymParent').sendMessage('hideHypothesis');
+        }
+    }
 });

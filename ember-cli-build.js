@@ -46,7 +46,7 @@ module.exports = function(defaults) {
     app.import(path.join(app.bowerDirectory, 'osf-style/css/base.css'));
     app.import('vendor/assets/ember-osf.css');
 
-    app.import(path.join('node_modules','pym.js/dist/pym.v1.min.js'));
+    app.import(path.join(app.bowerDirectory,'pym.js/dist/pym.v1.js'));
 
     app.import({
         test: path.join(app.bowerDirectory, 'ember/ember-template-compiler.js')

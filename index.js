@@ -113,6 +113,8 @@ module.exports = {
             }
         }
 
+        this.import(path.join(app.bowerDirectory, 'pym.js/dist/pym.v1.js'));
+
         return app;
     },
     treeForAddon: function(tree) {

@@ -20,10 +20,11 @@ import config from 'ember-get-config';
  * @class file-renderer
  */
 export default Ember.Component.extend({
-    didReceiveAttrs() {
+    didInsertElement() {
         this._super(...arguments);
         this.set('pymParent', new pym.Parent('mfrIframe', '', {}));
     },
+
     layout,
     download: null,
     width: '100%',

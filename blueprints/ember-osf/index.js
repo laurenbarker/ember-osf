@@ -25,5 +25,6 @@ module.exports = {
         } catch (e) {
             fs.renameSync(tmpConfigPath, configPath);
         }
+        return this.addBowerPackageToProject('pym');
     }
 };

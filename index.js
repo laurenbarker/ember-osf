@@ -140,20 +140,34 @@ module.exports = {
             include: ['components/**/*.scss'],
         });
 
-        return new BroccoliMergeTrees([tree, addonPodStyles, this._bootstrapStyles()], {
+        return new BroccoliMergeTrees([tree, addonPodStyles], {
             annotation: 'Ember OSF Merged Styles'
         });
 
     },
 
-    _bootstrapStyles: function() {
-        let bootstrapPath = path.join(this.app.project.nodeModulesPath, 'bootstrap-sass', 'assets', 'stylesheets');
+    // resolvePackagePath(pkgPath) {
+    //     let parts = pkgPath.split('/');
+    //     let pkg = parts[0];
+    //     let result = path.dirname(resolve.sync(`${pkg}/package.json`, { basedir: this.app.project.root }));
 
-        return new Funnel(bootstrapPath, {
-            annotation: 'Ember OSF Boostrap SASS',
-            include: ['**/*.scss'],
-        });
-    },
+    //     // add sub folders to path
+    //     if (parts.length > 1) {
+    //         let args = parts.map((part, i) => i === 0 ? result : part);
+    //         result = path.join.apply(path, args);
+    //     }
+    //     return result;
+    // },
+
+    // _bootstrapStyles: function() {
+    //     // let bootstrapPath = path.join(this.app.project.nodeModulesPath, 'bootstrap-sass', 'assets', 'stylesheets');
+    //     let bootstrapPath = this.resolvePackagePath('bootstrap-sass/assets/fonts');
+
+    //     return new Funnel(bootstrapPath, {
+    //         annotation: 'Ember OSF Bootstrap SASS',
+    //         include: ['**/*.scss'],
+    //     });
+    // },
     treeForAddon: function(tree) {
         this.addonTree = tree;
         return this._super.treeForAddon.apply(this, arguments);
@@ -166,7 +180,7 @@ module.exports = {
             include: ['components/**/*.scss'],
         });
 
-        return new BroccoliMergeTrees([tree, addonPodStyles, this._bootstrapStyles()], {
+        return new BroccoliMergeTrees([tree, addonPodStyles], {
             annotation: 'Ember OSF Merged Styles'
         });
     },

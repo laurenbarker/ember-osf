@@ -20,7 +20,7 @@ export default OsfModel.extend({
     // Relationships
     taxonomies: DS.hasMany('taxonomy'),
     highlightedTaxonomies: DS.hasMany('taxonomy'),
-    // projects: DS.hasMany('node', { inverse: 'provider', async: true }),
+    primaryCollection: DS.hasMany('collection'),
     licensesAcceptable: DS.hasMany('license', { inverse: null }),
 
     hasHighlightedSubjects: computed.alias('links.relationships.highlighted_taxonomies.links.related.meta.has_highlighted_subjects'),

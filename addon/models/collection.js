@@ -19,6 +19,11 @@ export default OsfModel.extend({
     dateCreated: DS.attr('date'),
     dateModified: DS.attr('date'),
     bookmarks: DS.attr('boolean'),
+    isPublic: DS.attr('boolean'),
+    isPromoted: DS.attr('boolean'),
+    collectedTypeChoices: DS.attr(),
+    statusChoices: DS.attr(),
+
     linkedNodes: DS.hasMany('nodes', {
         inverse: null,
         serializerType: 'linked-node'
@@ -26,6 +31,8 @@ export default OsfModel.extend({
     linkedRegistrations: DS.hasMany('registrations', {
         inverse: null,
         serializerType: 'linked-node'
-    })
+    }),
+    provider: DS.belongsTo('collection-provider'),
+    nodeLinks: DS.hasMany('nodes'),
 
 });
